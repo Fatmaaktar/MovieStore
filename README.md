@@ -1,9 +1,10 @@
-# 🚀 Film Projesi
-## 🌐 Kullanılan Teknolojiler!
+# 🚀 Movie Project
+
+## 🌐 Used Technologies!
 <li> Asp .Net Core MVC </li>
-<li>Html,Css,Js,Boostrap</li>
+<li>Html,Css,Js,Bootstrap</li>
 <li> MSSQL</li>  
 
-## 🧐 Proje Durumu   
+## 🧐 Project Status  
 
-Devam Ediyor....
+In Progress....
