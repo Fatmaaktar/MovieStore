@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MovieStore.Models.Domain;
 using MovieStore.Repositories.Abstract;
+using MovieStoreMvc.Repositories.Abstract;
 using MovieStoreMvc.Repositories.Implementation;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,9 @@ namespace MovieStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IGenreService, GenreService>();
+            services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IMovieService, MovieService>();
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connectionString:("conn")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<DatabaseContext>()

@@ -1,7 +1,6 @@
 ﻿@model MovieStore.Models.DTO.LoginModel
 @{
-
- }
+}
 
 <form class="w-40" asp-action="Login" method="post">
     <h2 class="pb-10">Login</h2>
@@ -25,12 +24,14 @@
 
     @if (TempData["msg"] != null)
     {
-<div class="alert mb-1">
-    @TempData["msg"]
-</div>}
+        <div class="alert mb-1">
+            @TempData["msg"]
+        </div>
+    }
 
     <div class="input-container">
         <button class="btn btn-default" type="submit">Login</button>
         @*<a class="btn btn-sec" href="#">Add more</a>*@
     </div>
 </form>
+

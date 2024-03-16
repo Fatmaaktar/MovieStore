@@ -144,3 +144,9 @@ C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\MovieStore.genr
 C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\MovieStore.csproj.AssemblyReference.cache
 C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\UserAuthentication\Login.cshtml.g.cs
 C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\ViewImports.cshtml.g.cs
+C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Genre\Add.cshtml.g.cs
+C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Genre\Edit.cshtml.g.cs
+C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Genre\GenreList.cshtml.g.cs
+C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Movie\Add.cshtml.g.cs
+C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Movie\Edit.cshtml.g.cs
+C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Movie\GenreList.cshtml.g.cs
