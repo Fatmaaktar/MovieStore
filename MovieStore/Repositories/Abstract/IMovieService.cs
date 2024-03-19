@@ -1,5 +1,6 @@
 ﻿using MovieStore.Models.Domain;
 using MovieStore.Models.DTO;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,5 +17,7 @@ namespace MovieStore.Repositories.Abstract
         bool Delete(int Id);
 
         MovieListVm List();
+
+        List<int> GetGenreByMovieId(int movieId);  
     }
 }

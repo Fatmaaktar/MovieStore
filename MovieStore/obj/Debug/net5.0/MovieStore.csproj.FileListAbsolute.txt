@@ -149,4 +149,4 @@ C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Gen
 C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Genre\GenreList.cshtml.g.cs
 C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Movie\Add.cshtml.g.cs
 C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Movie\Edit.cshtml.g.cs
-C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Movie\GenreList.cshtml.g.cs
+C:\Users\W10\source\repos\MovieStore\MovieStore\obj\Debug\net5.0\Razor\Views\Movie\MovieList.cshtml.g.cs

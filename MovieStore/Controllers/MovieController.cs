@@ -18,7 +18,7 @@ namespace MovieStore.Controllers
         private readonly IFileService _fileService;
         private readonly IGenreService _genService;
 
-        public MovieController(IGenreService genservice,IMovieService movieService, IFileService fileService)
+        public MovieController(IGenreService genservice, IMovieService movieService, IFileService fileService)
         {
             _movieService = movieService;
             _fileService = fileService;
@@ -37,13 +37,17 @@ namespace MovieStore.Controllers
             model.GenreList = _genService.List().Select(a => new SelectListItem { Text = a.GenreName, Value = a.Id.ToString() });
             if (!ModelState.IsValid)
                 return View(model);
-            var fileResult = this._fileService.SaveImage(model.ImageFile);
-            if (fileResult.Item1 == 0)
+            if (model.ImageFile != null)
             {
-                TempData["msg"] = "File could not saved";
+                var fileResult = this._fileService.SaveImage(model.ImageFile);
+                if (fileResult.Item1 == 0)
+                {
+                    TempData["msg"] = "File could not saved";
+                    return View(model);
+                }
+                var imageName = fileResult.Item2;
+                model.MovieImage = imageName;
             }
-            var imageName = fileResult.Item2;
-            model.MovieImage = imageName;
             var result = _movieService.Add(model);
             if (result)
             {
@@ -59,15 +63,27 @@ namespace MovieStore.Controllers
 
         public IActionResult Edit(int id)
         {
-            var data = _movieService.GetById(id);
-            return View(data);
+            var model = _movieService.GetById(id);
+            var selectGenres = _movieService.GetGenreByMovieId(model.Id);
+            MultiSelectList multiGenreList = new MultiSelectList(_genService.List(), "Id", "GenreName");
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult Update(Movie model)
-        {
-            if (!ModelState.IsValid)
+        { if (!ModelState.IsValid)
                 return View(model);
+            if (model.ImageFile != null)
+            {
+                var fileResult = this._fileService.SaveImage(model.ImageFile);
+                if (fileResult.Item1 == 0)
+                {
+                    TempData["msg"] = "File could not saved";
+                    return View(model);
+                }
+                var imageName = fileResult.Item2;
+                model.MovieImage = imageName;
+            }
             var result = _movieService.Update(model);
             if (result)
             {

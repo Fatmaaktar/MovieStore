@@ -17,7 +17,7 @@ namespace MovieStore.Models.Domain
         public string? Title { get; set; }
 
         public string? ReleaseYear { get; set; }
-        
+
         public string? MovieImage { get; set; }
         [Required]
         public string? Cast { get; set; }
@@ -29,6 +29,11 @@ namespace MovieStore.Models.Domain
         [NotMapped]
         [Required]
         public List<int> Genres { get; set; }
-        public IEnumerable<SelectListItem> GenreList;
+        [NotMapped]
+        public IEnumerable<SelectListItem> GenreList{get;set ;}
+        [NotMapped]
+        public string GenreNames { get; set; }
+        [NotMapped]
+        public MultiSelectList MultiGenreList { get; set; }
     }
 }

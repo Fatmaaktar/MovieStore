@@ -33,7 +33,8 @@ namespace MovieStore
             services.AddScoped<IGenreService, GenreService>();
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IMovieService, MovieService>();
-            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connectionString:("conn")));
+            // services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connectionString:("conn")));
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("conn")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<DatabaseContext>()
                 .AddDefaultTokenProviders();

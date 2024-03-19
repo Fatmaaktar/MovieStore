@@ -2,6 +2,7 @@
 using MovieStore.Models.DTO;
 using MovieStore.Repositories.Abstract;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MovieStoreMvc.Repositories.Implementation
@@ -65,10 +66,21 @@ namespace MovieStoreMvc.Repositories.Implementation
 
         public MovieListVm List()
         {
-            var List = ctx.Movie.AsQueryable();
+            var List = ctx.Movie.ToList();
+            foreach (var movie in List)
+            {
+                var genres = (from genre in ctx.Genre
+                              join mg in ctx.MovieGenre
+                              on genre.Id equals mg.GenreId
+                              where mg.MovieId == movie.Id
+                              select genre.GenreName
+                              ).ToList();
+                var genreNames = string.Join(',', genres);
+                movie.GenreNames = genreNames;
+            }
             var data = new MovieListVm
             {
-                MovieList = List
+                MovieList = List.AsQueryable()
             };
             return data;
         }
@@ -85,6 +97,12 @@ namespace MovieStoreMvc.Repositories.Implementation
             {
                 return false;
             }
+        }
+
+        public List<int> GetGenreByMovieId(int movieId)
+        {
+            var genreIds = ctx.MovieGenre.Where(a => a.MovieId == movieId).Select(a => a.GenreId).ToList();
+            return genreIds;
         }
     }
 }

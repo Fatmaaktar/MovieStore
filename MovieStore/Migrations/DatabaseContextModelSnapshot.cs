@@ -250,7 +250,6 @@ namespace MovieStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MovieImage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReleaseYear")
