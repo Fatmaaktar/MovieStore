@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MovieStore.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class GenreController : Controller
     {
         private readonly IGenreService _genreService;

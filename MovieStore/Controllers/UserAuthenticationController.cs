@@ -3,7 +3,7 @@ using MovieStore.Models.DTO;
 using MovieStore.Repositories.Abstract;
 using System.Threading.Tasks;
 
-namespace MovieStoreMvc.Controllers
+namespace MovieStore.Controllers
 {
     public class UserAuthenticationController : Controller
     {

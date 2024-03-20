@@ -65,13 +65,18 @@ namespace MovieStore.Controllers
         {
             var model = _movieService.GetById(id);
             var selectGenres = _movieService.GetGenreByMovieId(model.Id);
-            MultiSelectList multiGenreList = new MultiSelectList(_genService.List(), "Id", "GenreName");
+            MultiSelectList multiGenreList = new MultiSelectList(_genService.List(), "Id", "GenreName",selectGenres);
+            model.MultiGenreList = multiGenreList;
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Update(Movie model)
-        { if (!ModelState.IsValid)
+        public IActionResult Edit(Movie model)
+        {
+            var selectGenres = _movieService.GetGenreByMovieId(model.Id);
+            MultiSelectList multiGenreList = new MultiSelectList(_genService.List(), "Id", "GenreName", selectGenres);
+            model.MultiGenreList = multiGenreList;
+            if (!ModelState.IsValid)
                 return View(model);
             if (model.ImageFile != null)
             {
