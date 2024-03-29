@@ -12,12 +12,6 @@ namespace MovieStore.Controllers
         {
             this.authService = authService;
         }
-        /* We will create a user with admin rights, after that we are going
-          to comment this method because we need only
-          one user in this application 
-          If you need other users ,you can implement this registration method with view
-          I have create a complete tutorial for this, you can check the link in description box
-         */
 
         //public async Task<IActionResult> Register()
         //{
@@ -48,7 +42,7 @@ namespace MovieStore.Controllers
 
             var result = await authService.LoginAsync(model);
             if (result.StatusCode == 1)
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index","Home");
             else
             {
                 TempData["msg"] = "Could not logged in..";

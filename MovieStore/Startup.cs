@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -10,10 +9,6 @@ using MovieStore.Models.Domain;
 using MovieStore.Repositories.Abstract;
 using MovieStoreMvc.Repositories.Abstract;
 using MovieStoreMvc.Repositories.Implementation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MovieStore
 {
@@ -33,7 +28,6 @@ namespace MovieStore
             services.AddScoped<IGenreService, GenreService>();
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IMovieService, MovieService>();
-            // services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connectionString:("conn")));
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("conn")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<DatabaseContext>()

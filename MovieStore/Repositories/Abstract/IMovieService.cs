@@ -16,7 +16,7 @@ namespace MovieStore.Repositories.Abstract
 
         bool Delete(int Id);
 
-        MovieListVm List();
+        MovieListVm List(string term="",bool paging = false, int currentPage = 0);
 
         List<int> GetGenreByMovieId(int movieId);  
     }

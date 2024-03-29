@@ -10,8 +10,8 @@ using MovieStore.Models.Domain;
 namespace MovieStore.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240318200331_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240326202625_MovieMigration")]
+    partial class MovieMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -242,10 +242,6 @@ namespace MovieStore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<string>("Cast")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Director")
                         .IsRequired()

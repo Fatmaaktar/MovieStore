@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MovieStore.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class MovieMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,7 +69,6 @@ namespace MovieStore.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReleaseYear = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MovieImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Cast = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Director = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

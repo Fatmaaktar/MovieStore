@@ -64,10 +64,27 @@ namespace MovieStoreMvc.Repositories.Implementation
             return ctx.Movie.Find(id);
         }
 
-        public MovieListVm List()
+        public MovieListVm List(string term = "", bool paging = false, int currentPage = 0)
         {
-            var List = ctx.Movie.ToList();
-            foreach (var movie in List)
+            var data = new MovieListVm();
+            var list = new List<Movie>();
+            if (!string.IsNullOrEmpty(term))
+            {
+                term = term.ToLower();
+                list = list.Where(a => a.Title.ToLower().StartsWith(term)).ToList();
+            }
+
+            if (paging)
+            {
+                int pageSize = 5;
+                int count = list.Count;
+                int TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+                list = list.Skip((currentPage - 1)*pageSize).Take(pageSize).ToList();
+                data.PageSize = pageSize;
+                data.CurrentPage = currentPage;
+                data.TotalPages = TotalPages;
+            }
+            foreach (var movie in list)
             {
                 var genres = (from genre in ctx.Genre
                               join mg in ctx.MovieGenre
@@ -78,10 +95,7 @@ namespace MovieStoreMvc.Repositories.Implementation
                 var genreNames = string.Join(',', genres);
                 movie.GenreNames = genreNames;
             }
-            var data = new MovieListVm
-            {
-                MovieList = List.AsQueryable()
-            };
+            data.MovieList = list.AsQueryable();
             return data;
         }
 
@@ -89,15 +103,15 @@ namespace MovieStoreMvc.Repositories.Implementation
         {
             try
             {
-                var genresToDeleted = ctx.MovieGenre.Where(a=>a.MovieId==model.Id && !model.Genres.Contains(a.GenreId)).ToList();
+                var genresToDeleted = ctx.MovieGenre.Where(a => a.MovieId == model.Id && !model.Genres.Contains(a.GenreId)).ToList();
                 foreach (var mGenre in genresToDeleted)
                 {
                     ctx.MovieGenre.Remove(mGenre);
                 }
                 foreach (int genId in model.Genres)
                 {
-                    var movieGenre = ctx.MovieGenre.FirstOrDefault(a=>a.MovieId==model.Id && a.GenreId==genId);
-                    if (movieGenre==null)
+                    var movieGenre = ctx.MovieGenre.FirstOrDefault(a => a.MovieId == model.Id && a.GenreId == genId);
+                    if (movieGenre == null)
                     {
                         movieGenre = new MovieGenre { GenreId = genId, MovieId = model.Id };
                         ctx.MovieGenre.Add(movieGenre);

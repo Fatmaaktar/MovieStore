@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieStore.Repositories.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MovieStore.Controllers
 {
@@ -14,11 +10,11 @@ namespace MovieStore.Controllers
         {
             _movieService = movieService;
         }
-        //public IActionResult Index(string term = "", int currentPage = 1)
-        //{
-        //    var movies = _movieService.List(term, true, currentPage);
-        //    return View(movies);
-        //}
+        public IActionResult Index(string term = "", int currentPage = 1)
+        {
+            var movies = _movieService.List(term, true, currentPage);
+            return View(movies);
+        }
 
         public IActionResult About()
         {
@@ -33,4 +29,3 @@ namespace MovieStore.Controllers
 
     }
 }
-

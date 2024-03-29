@@ -2,18 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using MovieStore.Models.Domain;
 using MovieStore.Repositories.Abstract;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MovieStore.Controllers
 {
-    [Authorize]
     public class GenreController : Controller
     {
         private readonly IGenreService _genreService;
-
         public GenreController(IGenreService genreService)
         {
             _genreService = genreService;
@@ -31,13 +26,13 @@ namespace MovieStore.Controllers
             var result = _genreService.Add(model);
             if (result)
             {
-                TempData["msg"] = "Successfully Added";
+                TempData["msg"] = "Added Successfully";
                 return RedirectToAction(nameof(Add));
             }
             else
             {
-                TempData["msg"] = "Error On Server Side";
-                return View();
+                TempData["msg"] = "Error on server side";
+                return View(model);
             }
         }
 
@@ -55,12 +50,12 @@ namespace MovieStore.Controllers
             var result = _genreService.Update(model);
             if (result)
             {
-                TempData["msg"] = "Successfully Added";
+                TempData["msg"] = "Added Successfully";
                 return RedirectToAction(nameof(GenreList));
             }
             else
             {
-                TempData["msg"] = "Error On Server Side";
+                TempData["msg"] = "Error on server side";
                 return View(model);
             }
         }
@@ -76,5 +71,8 @@ namespace MovieStore.Controllers
             var result = _genreService.Delete(id);
             return RedirectToAction(nameof(GenreList));
         }
+
+
+
     }
 }
